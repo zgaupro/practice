@@ -1,0 +1,69 @@
+import math
+
+class Point: 
+  def __init__(self, x : int = 0, y : int = 1):
+    self.__x = x
+    self.__y = y
+    pass
+  
+  def read(self, x: int, y: int): 
+    x = int(input())
+    y = int(input())
+    pass
+  
+  def print(self) -> str: 
+    print(f'({self.__x}, {self.__y})')
+    return f'({self.__x}, {self.__y})'
+  
+  def move(self, dirX : int, dirY: int): 
+    self.__x += dirX
+    self.__y += dirY
+    pass
+  
+  def getX(self) -> int: 
+    return self.__x
+  
+  def getY(self) -> int: 
+    return self.__y
+  
+  def distance(self, comparedPoint : Point = None) -> int: 
+    if not comparedPoint:
+      return math.sqrt(self.__x ** 2 + self.__y ** 2)
+    else:
+      return math.sqrt(abs(comparedPoint.__x - self.__x ** 2) + abs(comparedPoint.__y - self.__y ** 2))
+
+
+class LineSegment:
+  def __init__(self, d1 = Point(8, 5), d2 = Point(1, 0)):
+    self.__d1 = d1
+    self.__d2 = d2
+    pass
+  
+  @classmethod
+  def fromScratchMethod(self, x1 : int, y1 : int, x2 : int, y2 : int):
+    return LineSegment(Point(x1, y1), Point(x2, y2))
+  
+  @classmethod
+  def copyMethod(self, segment : LineSegment):
+    return LineSegment(segment.__d1, segment.__d2)
+  
+  def read(self) -> str:
+    print(f'{self.__d1.getX()} {self.__d1.getY()} {self.__d2.getX()} {self.__d2.getX()}')
+    return f'{self.__d1.getX()} {self.__d1.getY()} {self.__d2.getX()} {self.__d2.getX()}'
+  
+  def print(self) -> str:
+    return f'[({self.__d1.getX()}, {self.__d1.getY()}); ({self.__d2.getX()}, {self.__d2.getY()})]'
+  
+  def move(self, dirX, dirY):
+    self.__d1.__x += dirX
+    self.__d1.__y += dirY
+    
+    self.__d2.__x += dirX
+    self.__d2.__y += dirY
+    pass
+  
+  def length(self) -> int:
+    return math.sqrt(abs( (self.__d1.getX() - self.__d2.getX()) ** 2 + (self.__d1.getY() - self.__d2.getY()) ** 2 ))
+  
+  def angle(self) -> int:
+    return round(math.atan2(self.length(), 1))
