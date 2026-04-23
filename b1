@@ -1,0 +1,33 @@
+import math
+
+class Point: 
+  def __init__(self, x : int = 0, y : int = 1):
+    self.__x = x
+    self.__y = y
+    pass
+  
+  def read(self, x: int, y: int): 
+    x = int(input())
+    y = int(input())
+    pass
+  
+  def print(self) -> str: 
+    print(f'({self.__x}, {self.__y})')
+    return f'({self.__x}, {self.__y})'
+  
+  def move(self, dirX : int, dirY: int): 
+    self.__x += dirX
+    self.__y += dirY
+    pass
+  
+  def getX(self) -> int: 
+    return self.__x
+  
+  def getY(self) -> int: 
+    return self.__y
+  
+  def distance(self, comparedPoint : Point = None) -> int: 
+    if not comparedPoint:
+      return math.sqrt(self.__x ** 2 + self.__y ** 2)
+    else:
+      return math.sqrt(abs(comparedPoint.__x - self.__x ** 2) + abs(comparedPoint.__y - self.__y ** 2))
